@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+/* Los tokens replican la colección `tokens` del archivo de Figma. */
+@theme {
+  --color-papel: #f4f4f0;
+  --color-hundido: #eae8e3;
+  --color-tinta: #050505;
+  --color-apagada: #6b6b66;
+  --color-tenue: #a8a69f;
+  --color-rojo: #e61919;
+
+  --color-solicitado: #1f4fd8;
+  --color-en-estudio: #c77700;
+  --color-aprobado: #0e7a3c;
+  --color-desembolsado: #0a5c2e;
+  --color-rechazado: #e61919;
+  --color-cancelado: #6b6b66;
+
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-titulo: 'Inter', system-ui, sans-serif;
+
+  /* Swiss Industrial Print: ningún ángulo redondeado, nunca.
+     Vaciar la escala elimina las utilidades `rounded-*` del proyecto entero. */
+  --radius-*: initial;
+}
+
+@layer base {
+  body {
+    @apply bg-papel text-tinta font-mono antialiased;
+  }
+
+  /* Foco visible en todo elemento interactivo: accesibilidad base, no se recorta. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-rojo;
+  }
+}
+
+@utility rotulo {
+  @apply font-mono text-[10px] font-bold uppercase tracking-[0.10em];
+}
+
+@utility dato {
+  @apply font-mono text-[11px] tracking-[0.04em];
+}
+
+@utility cifra {
+  @apply font-titulo font-black tracking-[-0.04em] leading-[0.95];
+}

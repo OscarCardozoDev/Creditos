@@ -1,0 +1,12 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "globalSetup": "<rootDir>/entorno-e2e.global-setup.js",
+  "globalTeardown": "<rootDir>/entorno-e2e.global-teardown.js",
+  "testTimeout": 30000
+}

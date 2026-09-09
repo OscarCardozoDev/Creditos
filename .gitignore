@@ -1,0 +1,30 @@
+# Dependencias y compilados: se reconstruyen con npm ci / bun install y docker compose build.
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Secretos. El .env real nunca se versiona; .env.example es el que documenta las claves.
+.env
+.env.*
+!.env.example
+
+# Registros y volcados de herramientas
+*.log
+npm-debug.log*
+.playwright-mcp/
+cookies.txt
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Herramientas y notas de trabajo local: no forman parte de la entrega
+.claude/
+.skills/
+CLAUDE.md
+ROADMAP.md

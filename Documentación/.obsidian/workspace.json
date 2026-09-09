@@ -1,0 +1,237 @@
+{
+  "main": {
+    "id": "65cbc3010cb6ae52",
+    "type": "split",
+    "children": [
+      {
+        "id": "a8b8351ad92e5c5d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e2bb2e2730252a59",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "dominio/01_conceptos_de_credito.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01_conceptos_de_credito"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f64e612e3d2ee8cc",
+    "type": "split",
+    "children": [
+      {
+        "id": "cea4d42eb250ff19",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c2b234b9b08631a1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de archivos"
+            }
+          },
+          {
+            "id": "be078171ba9d6243",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Buscar"
+            }
+          },
+          {
+            "id": "a3225def01a5ccf6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9efd12d753e96b92",
+    "type": "split",
+    "children": [
+      {
+        "id": "9dd54fbde05a3de8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b97bf73d4c3f5185",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "arquitectura/01_vision_general.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Enlaces entrantes"
+            }
+          },
+          {
+            "id": "704b58d0378234e5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "arquitectura/01_vision_general.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Enlaces salientes"
+            }
+          },
+          {
+            "id": "c52fd3d47cb07400",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "cd3471d04673473e",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas las propiedades"
+            }
+          },
+          {
+            "id": "335bb13d746be6b5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "arquitectura/01_vision_general.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Esquema"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false
+    }
+  },
+  "active": "e2bb2e2730252a59",
+  "lastOpenFiles": [
+    "arquitectura/03_seguridad.md",
+    "arquitectura/02_modelo_de_datos.md",
+    "arquitectura/01_vision_general.md",
+    "dominio/01_conceptos_de_credito.md",
+    "ROADMAP.md",
+    "test/01_autenticacion.md",
+    "DECISIONES.md",
+    "DECISIONES.md.tmp.18356.dab583136bb1",
+    "test/06_notificaciones_webhook.md",
+    "diagramas/Flujo de solicitud de credito.svg",
+    "diagramas/Estructura del proyecto - monolito.svg",
+    "diagramas/Diagrama entidad - relacion.svg",
+    "diagramas/Criterio de seleccion de codigos HTTP.svg",
+    "README.md.tmp.11728.0dd0a6e4637c",
+    "test/README.md.tmp.11728.d0f6e4b08dc5",
+    "test/06_notificaciones_webhook.md.tmp.11728.7e5dc5bf61de",
+    "test/README.md.tmp.11728.c79122c0b932",
+    "test/05_cuotas_y_pagos.md",
+    "test/05_cuotas_y_pagos.md.tmp.11728.0f1ef3131738",
+    "test/04_creditos.md.tmp.11728.50a95a0b755a",
+    "test/README.md.tmp.11728.fc9b7300f34b",
+    "test/04_creditos.md.tmp.11728.46c16d9d5fff",
+    "test/04_creditos.md.tmp.11728.71449a9d1868",
+    "test/04_creditos.md",
+    "test/03_simulacion.md",
+    "test/02_usuarios.md",
+    "test/README.md",
+    "README.md",
+    "diagramas/Webhook.svg",
+    "arquitectura/07_webhook.md",
+    "diagramas/Maquina de estados del credito.svg",
+    "modulos/01_autenticacion_y_sesiones.md",
+    "modulos/03_simulacion.md",
+    "diagramas/Diagrama entidad - relacion v2.svg",
+    "modulos/02_creditos.md",
+    "operacion/02_pruebas.md",
+    "operacion/01_entorno_local.md",
+    "arquitectura/06_escalabilidad.md",
+    "arquitectura/05_despliegue.md",
+    "arquitectura/04_manejo_de_errores.md",
+    "modulos/05_notificaciones.md",
+    "5_Modulo_Creditos.md",
+    "modulos/06_frontend.md"
+  ]
+}

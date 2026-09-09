@@ -1,0 +1,58 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD:?falta DB_PASSWORD}
+    ports:
+      - "${DB_PORT_HOST:-1433}:1433"
+    volumes:
+      - sqlserver-datos:/var/opt/mssql
+    healthcheck:
+      # Espera a que el motor acepte conexiones, no solo a que el contenedor exista.
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  api:
+    build: ./api
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 3000
+      DB_HOST: sqlserver
+      DB_PORT: 1433
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SESSION_COOKIE_NAME: ${SESSION_COOKIE_NAME}
+      SESSION_INACTIVIDAD_MIN: ${SESSION_INACTIVIDAD_MIN}
+      SESSION_ABSOLUTA_HORAS: ${SESSION_ABSOLUTA_HORAS}
+      WEBHOOK_URL: ${WEBHOOK_URL}
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET}
+      WEBHOOK_TIMEOUT_MS: ${WEBHOOK_TIMEOUT_MS}
+      WEBHOOK_MAX_INTENTOS: ${WEBHOOK_MAX_INTENTOS}
+      WORKER_INTERVALO_MS: ${WORKER_INTERVALO_MS}
+      CORS_ORIGINS: ${CORS_ORIGINS}
+    ports:
+      - "${API_PORT_HOST:-3000}:3000"
+
+  web:
+    build: ./web
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      # Dentro de la red de compose la API es el servicio `api`, no localhost: el proxy de Vite
+      # apunta ahi. Fuera de Docker, vite.config.ts cae en API_PORT_HOST del .env de la raiz.
+      API_URL: http://api:3000
+    ports:
+      - "${WEB_PORT_HOST:-5173}:5173"
+
+volumes:
+  sqlserver-datos:

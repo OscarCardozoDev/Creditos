@@ -58,12 +58,14 @@ export function Armazon() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="flex h-13 shrink-0 items-center justify-between bg-tinta px-6">
-        <div className="flex items-center gap-7">
+      {/* Envuelve en dos filas cuando no cabe: por debajo de ~1000 px el nombre del usuario
+          se montaba encima del menú. `min-h` conserva la altura exacta cuando sí cabe. */}
+      <header className="flex min-h-13 shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-2 bg-tinta px-6 py-2">
+        <div className="flex flex-wrap items-center gap-x-7 gap-y-2">
           <span className="font-titulo text-base font-black tracking-[-0.02em] text-papel">
             CRÉDITOS®
           </span>
-          <nav className="flex items-center gap-5">
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {enlaces.map((e, i) => (
               <span key={e.a} className="flex items-center gap-5">
                 {i > 0 && <span className="text-[11px] text-apagada">│</span>}
@@ -83,7 +85,7 @@ export function Armazon() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <span className="text-[11px] font-medium uppercase tracking-[0.08em] text-papel">
             {usuario.nombre} · {usuario.rol}
           </span>

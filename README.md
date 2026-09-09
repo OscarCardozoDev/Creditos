@@ -24,8 +24,8 @@ Requisitos: Docker Desktop con Compose. Node.js 20+ solo si se quiere correr alg
 contenedor.
 
 ```bash
-git clone <repositorio>
-cd Prueba_Tecnica_2_El_Remaster
+git clone git@github.com:OscarCardozoDev/Creditos.git
+cd Creditos
 cp .env.example .env      # editar las contraseñas locales
 docker compose up --build
 ```
@@ -74,6 +74,48 @@ npm run test:e2e      # extremo a extremo contra SQL Server real (arranca su pro
 `test:e2e` no usa una base en memoria: lo que prueba son restricciones reales del motor (índices
 filtrados, `CHECK`, `ROWVERSION`) que un sustituto no reproduce. Detalle de la estrategia:
 [`Documentación/operacion/02_pruebas.md`](Documentación/operacion/02_pruebas.md).
+
+## Verificar el webhook
+
+Cada crédito registrado y **cada** cambio de estado escriben un evento en `Notificaciones`,
+dentro de la misma transacción. Un proceso los entrega por HTTP cada `WORKER_INTERVALO_MS`
+(10 s), firmados con `HMAC-SHA256`. El repositorio trae un receptor sin dependencias para
+comprobarlo:
+
+```bash
+node api/pruebas-manuales/receptor-webhook.mjs
+```
+
+Escucha en el puerto de `WEBHOOK_URL` (4000 por omisión), recalcula la firma por su cuenta y la
+compara contra la cabecera `X-Signature`. Con él corriendo, registrar un crédito y cambiarle el
+estado imprime:
+
+```
+✓ firma valida  credito.creado
+  eventId    3009c925-b0fe-4d77-9b71-88a3070cb27f
+  data       {"id":"...","numeroCredito":"CR-2026-000009","valorSolicitado":"12300000.00","estado":"SOLICITADO"}
+  respondo   200
+
+✓ firma valida  credito.estado_cambiado
+  data       {"...","estadoAnterior":"SOLICITADO","estadoNuevo":"APROBADO"}
+```
+
+Que la firma se verifique con código ajeno al de la API es justamente lo que prueba que la
+integridad del evento no depende de confiar en quien lo envía.
+
+Para ver los reintentos, el receptor puede responder lo que se le pida:
+
+```bash
+node api/pruebas-manuales/receptor-webhook.mjs --estado=500   # transitorio: reintenta con retroceso
+node api/pruebas-manuales/receptor-webhook.mjs --estado=400   # definitivo: queda FALLIDO sin reintentar
+```
+
+Y con el receptor apagado, registrar un crédito sigue respondiendo `201`: el sistema externo
+caído nunca decide si un crédito se registra. El estado de la bandeja de salida se consulta en
+la tabla `Notificaciones` (`estado`, `intentos`, `http_status`, `proximo_intento`).
+
+El mecanismo completo —reclamación atómica, retroceso, firma e idempotencia por `eventId`— está
+en [`Documentación/arquitectura/07_webhook.md`](Documentación/arquitectura/07_webhook.md).
 
 ## Estructura de carpetas
 

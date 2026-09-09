@@ -16,12 +16,22 @@ Dos direcciones distintas, con preparación distinta:
 
 ## Preparación
 
-**Para los casos 1 a 7**, un receptor de prueba: un Mock Server de Postman con ejemplos que
-respondan `200`, `500` o `400` según el caso, o un servicio de captura de peticiones. Apuntar
-`WEBHOOK_URL` del `.env` de la API a esa URL y reiniciar el
-contenedor `api` (`docker compose up -d --build api`) para que tome el valor nuevo. `
-WORKER_INTERVALO_MS` (10 segundos en el `.env` de referencia) es cuánto hay que esperar entre
-disparar la acción y comprobar el resultado en la tabla.
+**Para los casos 1 a 7**, un receptor de prueba. El repositorio trae uno sin dependencias, que
+además verifica la firma por su cuenta:
+
+```bash
+node api/pruebas-manuales/receptor-webhook.mjs            # responde 200 (casos 1, 2, 6, 7)
+node api/pruebas-manuales/receptor-webhook.mjs --estado=500  # caso 3
+node api/pruebas-manuales/receptor-webhook.mjs --estado=400  # caso 4
+```
+
+Toma el puerto de `WEBHOOK_URL` y el secreto de `WEBHOOK_SECRET`, ambos del `.env` de la raíz;
+con el valor de referencia (`http://host.docker.internal:4000/receptor`) no hay nada que
+configurar. Para el caso 5 basta con no arrancarlo. Sirve igual un Mock Server de Postman o un
+servicio de captura de peticiones, apuntando `WEBHOOK_URL` a esa URL y reiniciando el contenedor
+`api` (`docker compose up -d --build api`) para que tome el valor nuevo. `WORKER_INTERVALO_MS`
+(10 segundos en el `.env` de referencia) es cuánto hay que esperar entre disparar la acción y
+comprobar el resultado en la tabla.
 
 **Para los casos 8 a 11**, la variable de colección `webhookSecret`, copiada a mano del
 `WEBHOOK_SECRET` del `.env` de la API — nunca se guarda en el archivo de la colección compartida,

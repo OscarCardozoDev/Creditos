@@ -1,3 +1,4 @@
+import Decimal from 'decimal.js';
 import { randomUUID } from 'node:crypto';
 import { Credito } from '../entidades/credito.entidad';
 import { EstadoCredito, EventoNotificacion } from '../entidades/enums';
@@ -10,13 +11,22 @@ export interface CuerpoEvento {
   data: Record<string, unknown>;
 }
 
+/**
+ * Normaliza un monto a dos decimales. El valor recien escrito conserva el formato de
+ * `Decimal.toFixed(2)`, pero el que vuelve de SQL Server llega sin los decimales a cero: sin esto
+ * el mismo campo sale como "12300000.00" al crear y como "12300000" al cambiar de estado.
+ */
+function monto(valor: string): string {
+  return new Decimal(valor).toFixed(2);
+}
+
 /** Arma el evento de credito recien registrado. */
 export function eventoCreditoCreado(credito: Credito, identificacionAsociado: string): CuerpoEvento {
   return armar(EventoNotificacion.CREDITO_CREADO, {
     id: credito.creditoId,
     numeroCredito: credito.numCredito,
     identificacionAsociado,
-    valorSolicitado: credito.valorSolicitado,
+    valorSolicitado: monto(credito.valorSolicitado),
     estado: credito.estado,
   });
 }
@@ -32,7 +42,7 @@ export function eventoEstadoCambiado(
     id: credito.creditoId,
     numeroCredito: credito.numCredito,
     identificacionAsociado,
-    valorSolicitado: credito.valorSolicitado,
+    valorSolicitado: monto(credito.valorSolicitado),
     estadoAnterior,
     estadoNuevo,
   });

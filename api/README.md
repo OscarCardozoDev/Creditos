@@ -122,7 +122,7 @@ mensaje del motor ni un nombre de tabla.
 
 ```bash
 npm test        # 86 casos: amortización, máquina de estados, fechas, firma y reintentos
-npm run test:e2e # 21 casos contra SQL Server real
+npm run test:e2e # 29 casos contra SQL Server real, incluido el webhook de entrada y salida
 ```
 
 Las e2e no usan una base en memoria: lo que prueban son restricciones reales del motor —índices

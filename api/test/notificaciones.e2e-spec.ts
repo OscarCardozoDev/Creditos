@@ -1,5 +1,13 @@
 import { createHmac, randomUUID } from 'node:crypto';
-import { api, conEscritura, conSesion, ejecutarSql, identificacionUnica, iniciarSesion, SesionPrueba } from './apoyo-e2e';
+import {
+  api,
+  conEscritura,
+  conSesion,
+  ejecutarSql,
+  identificacionUnica,
+  iniciarSesion,
+  SesionPrueba,
+} from './apoyo-e2e';
 
 /**
  * Casos de Documentacion/operacion/02_pruebas.md S5: integracion con el sistema externo.
@@ -47,7 +55,9 @@ describe('Notificaciones y webhook (e2e)', () => {
 
   /** Registra un credito por la via normal y devuelve su identificador. */
   async function crearCredito(overrides: Record<string, unknown> = {}): Promise<string> {
-    const respuesta = await conEscritura(api().post('/api/creditos'), analista).send(creditoValido(overrides)).expect(201);
+    const respuesta = await conEscritura(api().post('/api/creditos'), analista)
+      .send(creditoValido(overrides))
+      .expect(201);
     return respuesta.body.data.id as string;
   }
 
